@@ -7,10 +7,10 @@ test('complete quiz and receive a recommendation', async () => {
   render(<Quiz />)
   const user = userEvent.setup()
 
-  // For brevity, pick the 'art' option every time to ensure Florence is recommended
+  // For brevity, pick the first option every time to ensure Florence is recommended
   for (let i = 0; i < 4; i++) {
-    const button = await screen.findByRole('button', { name: /museum|art|private/i })
-    await user.click(button)
+    const buttons = await screen.findAllByRole('button')
+    await user.click(buttons[0])
   }
 
   // Expect recommended destination text
