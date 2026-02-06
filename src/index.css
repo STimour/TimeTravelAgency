@@ -1,0 +1,48 @@
+/* Tailwind base + custom styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #646cff;
+  --bg-dark: #121212;
+  --bg-light: #ffffff;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Small utility tweaks preserved from original design */
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Buttons: keep accessible focus ring and gentle rounding */
+.btn {
+  @apply rounded-md border-0 px-4 py-2 font-medium bg-gray-900 text-white hover:bg-gray-800;
+  /* Smooth button transitions and subtle lift on hover */
+  @apply transition-transform transition-colors duration-200 ease-in-out transform;
+  @apply hover:-translate-y-1;
+  @apply focus:ring-2 focus:ring-brand/40;
+}
+.btn:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Readability helpers used in components */
+.container-max {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Modal backdrop smoothing */
+.modal-backdrop {
+  background-color: rgba(2,6,23,0.6);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-dark: #f9f9f9;
+  }
+  .btn {
+    @apply bg-white text-slate-900;
+  }
+}
