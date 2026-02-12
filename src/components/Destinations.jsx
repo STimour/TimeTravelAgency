@@ -42,8 +42,8 @@ export default function Destinations() {
   const [ref, inView] = useInView({ threshold: 0.12 })
 
   return (
-    <section id="destinations" ref={ref} className={`container-max py-16 transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-      <div className="max-w-3xl bg-slate-900/40 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/10 shadow-2xl">
+    <section id="destinations" ref={ref} className={`container-max py-16 transition-all duration-500 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div className={`max-w-3xl bg-slate-900/40 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/10 shadow-2xl ${inView ? 'glass-animate' : ''}`}>
         <h2 className="text-3xl font-bold text-white">Featured Destinations</h2>
         <p className="mt-2 text-slate-200">Handpicked voyages across time — immersive, small-group experiences.</p>
       </div>
