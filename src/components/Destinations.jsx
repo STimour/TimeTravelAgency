@@ -42,7 +42,7 @@ export default function Destinations() {
   const [ref, inView] = useInView({ threshold: 0.12 })
 
   return (
-    <section id="destinations" ref={ref} className={`container-max py-16 transition-all duration-500 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+    <section id="destinations" ref={ref} className={`container-max py-16 transition-all duration-500 ease-in-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
       <div className={`max-w-3xl bg-slate-900/40 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/10 shadow-2xl ${inView ? 'glass-animate' : ''}`}>
         <h2 className="text-3xl font-bold text-white">Featured Destinations</h2>
         <p className="mt-2 text-slate-200">Handpicked voyages across time — immersive, small-group experiences.</p>
@@ -50,7 +50,7 @@ export default function Destinations() {
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {sampleDestinations.map((d) => (
-          <article key={d.id} aria-label={`${d.name} card`} className="bg-slate-900/40 backdrop-blur-lg rounded-xl overflow-hidden shadow-2xl border border-white/10 transition-transform duration-300 ease-out hover:scale-105 hover:shadow-2xl cursor-pointer" onClick={() => setSelected(d)}>
+          <article key={d.id} aria-label={`${d.name} card`} className="bg-slate-900/40 backdrop-blur-lg rounded-xl overflow-hidden shadow-2xl border border-white/10 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl cursor-pointer" onClick={() => setSelected(d)}>
             <div className="relative h-48 md:h-40">
               <img src={d.image} alt={`${d.name} — ${d.era}`} loading="lazy" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>

@@ -36,7 +36,7 @@ body {
 /* Glass morphism animation - smooth appearance */
 @keyframes glassAppear {
   from {
-    backdrop-filter: blur(0px);
+    backdrop-filter: blur(10px);
     background-color: rgba(15, 23, 42, 0);
   }
   to {
@@ -46,7 +46,9 @@ body {
 }
 
 .glass-animate {
-  animation: glassAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: glassAppear 0.1s ease-out forwards;
+  transform: translateZ(0); /* Force GPU */
+  will-change: backdrop-filter, background-color;
 }
 
 /* Modal backdrop smoothing */

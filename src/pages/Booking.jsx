@@ -30,7 +30,7 @@ export default function Booking({ onDestinationSelect }) {
   if (confirmed) {
     return (
       <section className="relative text-white">
-        <div ref={ref} className={`relative container-max py-24 md:py-32 transition-all duration-500 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div ref={ref} className={`relative container-max py-24 md:py-32 transition-all duration-500 ease-in-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className={`max-w-3xl bg-slate-900/40 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/10 shadow-2xl ${inView ? 'glass-animate' : ''}`}>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Booking confirmed</h2>
             <p className="mt-6 text-lg text-slate-100/90">Your mock booking is ready. Details below:</p>
@@ -55,7 +55,7 @@ export default function Booking({ onDestinationSelect }) {
 
   return (
     <section className="relative text-white">
-      <div ref={ref} className={`relative container-max py-24 md:py-32 transition-all duration-500 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div ref={ref} className={`relative container-max py-24 md:py-32 transition-all duration-500 ease-in-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className={`max-w-3xl bg-slate-900/40 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/10 shadow-2xl ${inView ? 'glass-animate' : ''}`}>
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Book Your Time Travel</h1>
           <p className="mt-6 text-lg text-slate-100/90">
