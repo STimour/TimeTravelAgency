@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import useInView from '../hooks/useInView'
 
 const OPTIONS = [
   { value: 'paris-1889', label: 'Paris 1889' },
@@ -10,6 +11,7 @@ export default function Booking({ onDestinationSelect }) {
   const [form, setForm] = useState({ destination: 'paris-1889', date: '', travelers: 1 })
   const [errors, setErrors] = useState({})
   const [confirmed, setConfirmed] = useState(null)
+  const [ref, inView] = useInView({ threshold: 0.12 })
 
   function validate() {
     const e = {}
@@ -27,22 +29,24 @@ export default function Booking({ onDestinationSelect }) {
 
   if (confirmed) {
     return (
-      <section className="container-max py-16">
-        <div className="max-w-2xl bg-white dark:bg-slate-900 rounded-xl p-6 shadow">
-          <h2 className="text-2xl font-bold">Booking confirmed</h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300">Your mock booking is ready. Details below:</p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><strong>Reference:</strong> {confirmed.id}</li>
-            <li><strong>Destination:</strong> {OPTIONS.find(o => o.value === confirmed.destination)?.label}</li>
-            <li><strong>Date:</strong> {confirmed.date}</li>
-            <li><strong>Travelers:</strong> {confirmed.travelers}</li>
+      <section className="relative text-white">
+        <div ref={ref} className={`relative container-max py-24 md:py-32 transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <div className="max-w-3xl bg-slate-900/40 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/10 shadow-2xl">
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Booking confirmed</h2>
+            <p className="mt-6 text-lg text-slate-100/90">Your mock booking is ready. Details below:</p>
+          <ul className="mt-6 space-y-3 text-slate-100/90">
+            <li className="flex gap-2"><strong className="text-white">Reference:</strong> {confirmed.id}</li>
+            <li className="flex gap-2"><strong className="text-white">Destination:</strong> {OPTIONS.find(o => o.value === confirmed.destination)?.label}</li>
+            <li className="flex gap-2"><strong className="text-white">Date:</strong> {confirmed.date}</li>
+            <li className="flex gap-2"><strong className="text-white">Travelers:</strong> {confirmed.travelers}</li>
           </ul>
-          <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">
+          <p className="mt-6 text-slate-100/90">
             Your itinerary will be reviewed by our temporal safety team. A dedicated chronoguide will contact you with
             final details and discreet travel briefings.
           </p>
-          <div className="mt-6">
-            <a href="#" className="btn bg-brand text-black">Save reservation (mock)</a>
+          <div className="mt-8 flex gap-4">
+            <a href="#" className="btn bg-brand text-white">Save reservation (mock)</a>
+          </div>
           </div>
         </div>
       </section>
@@ -50,16 +54,17 @@ export default function Booking({ onDestinationSelect }) {
   }
 
   return (
-    <section className="container-max py-16">
-      <div className="max-w-2xl bg-white dark:bg-slate-900 rounded-xl p-6 shadow">
-        <h1 className="text-2xl font-bold">Book Your Time Travel</h1>
-        <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+    <section className="relative text-white">
+      <div ref={ref} className={`relative container-max py-24 md:py-32 transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+        <div className="max-w-3xl bg-slate-900/40 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/10 shadow-2xl">
+          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Book Your Time Travel</h1>
+          <p className="mt-6 text-lg text-slate-100/90">
           This is a mock booking experience designed to simulate a premium journey. No payment is required and no
           reservation is finalized at this stage.
         </p>
-        <form className="mt-4 space-y-4" onSubmit={onSubmit}>
+        <form className="mt-8 space-y-6" onSubmit={onSubmit}>
           <div>
-            <label htmlFor="booking-destination" className="block text-sm font-medium">Destination</label>
+            <label htmlFor="booking-destination" className="block text-sm font-medium text-white mb-2">Destination</label>
             <select
               id="booking-destination"
               value={form.destination}
@@ -69,44 +74,45 @@ export default function Booking({ onDestinationSelect }) {
                 const label = OPTIONS.find((o) => o.value === destination)?.label
                 if (label) onDestinationSelect?.(label)
               }}
-              className="mt-1 block w-full rounded-md bg-slate-50 dark:bg-slate-800 px-3 py-2"
+              className="block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 text-white focus:border-brand focus:ring-1 focus:ring-brand"
             >
               {OPTIONS.map((o) => (
-                <option key={o.value} value={o.value}>{o.label}</option>
+                <option key={o.value} value={o.value} className="bg-slate-800">{o.label}</option>
               ))}
             </select>
           </div>
 
           <div>
-            <label htmlFor="booking-date" className="block text-sm font-medium">Preferred date</label>
+            <label htmlFor="booking-date" className="block text-sm font-medium text-white mb-2">Preferred date</label>
             <input
               id="booking-date"
               type="date"
               value={form.date}
               onChange={(e) => setForm((s) => ({ ...s, date: e.target.value }))}
-              className="mt-1 block w-full rounded-md bg-slate-50 dark:bg-slate-800 px-3 py-2"
+              className="block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 text-white focus:border-brand focus:ring-1 focus:ring-brand"
             />
             {errors.date && <div className="text-xs text-red-400 mt-1">{errors.date}</div>}
           </div>
 
           <div>
-            <label htmlFor="booking-travelers" className="block text-sm font-medium">Number of travelers</label>
+            <label htmlFor="booking-travelers" className="block text-sm font-medium text-white mb-2">Number of travelers</label>
             <input
               id="booking-travelers"
               type="number"
               min={1}
               value={form.travelers}
               onChange={(e) => setForm((s) => ({ ...s, travelers: Number(e.target.value) }))}
-              className="mt-1 block w-28 rounded-md bg-slate-50 dark:bg-slate-800 px-3 py-2"
+              className="block w-32 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 text-white focus:border-brand focus:ring-1 focus:ring-brand"
             />
             {errors.travelers && <div className="text-xs text-red-400 mt-1">{errors.travelers}</div>}
           </div>
 
-          <div className="flex gap-3">
-            <button type="submit" className="btn bg-brand text-black">Confirm booking</button>
-            <button type="button" className="btn" onClick={() => setForm({ destination: 'paris-1889', date: '', travelers: 1 })}>Reset</button>
+          <div className="mt-8 flex gap-4">
+            <button type="submit" className="btn bg-brand text-white">Confirm booking</button>
+            <button type="button" className="btn bg-white/10 backdrop-blur-sm border-white/20" onClick={() => setForm({ destination: 'paris-1889', date: '', travelers: 1 })}>Reset</button>
           </div>
         </form>
+        </div>
       </div>
     </section>
   )

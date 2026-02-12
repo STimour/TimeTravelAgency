@@ -99,15 +99,15 @@ export default function Quiz() {
   if (result) {
     return (
       <section className="container-max py-12">
-        <div className="max-w-2xl bg-white dark:bg-slate-900 rounded-xl p-6 shadow-lg">
-          <h3 className="text-2xl font-bold">Recommended Destination</h3>
+        <div className="max-w-2xl bg-slate-900/40 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-white/10">
+          <h3 className="text-2xl font-bold text-white">Recommended Destination</h3>
           <div className="mt-4">
-            <div className="text-xl font-semibold">{result.dest.name}</div>
-            <p className="mt-2 text-slate-600 dark:text-slate-300">{result.dest.explanation}</p>
-            <div className="mt-3 text-sm text-slate-500">Based on your answers: {result.choices}</div>
+            <div className="text-xl font-semibold text-white">{result.dest.name}</div>
+            <p className="mt-2 text-slate-200">{result.dest.explanation}</p>
+            <div className="mt-3 text-sm text-slate-300">Based on your answers: {result.choices}</div>
           </div>
           <div className="mt-6 flex gap-3">
-            <button onClick={restart} className="btn">Take again</button>
+            <button onClick={restart} className="btn bg-white/10 backdrop-blur-sm border-white/20 text-white">Take again</button>
             <a href="#destinations" className="btn bg-brand text-black">Explore matching trips</a>
           </div>
         </div>
@@ -119,17 +119,17 @@ export default function Quiz() {
 
   return (
     <section className="container-max py-12">
-      <div className="max-w-2xl bg-white dark:bg-slate-900 rounded-xl p-6 shadow">
-        <h3 className="text-2xl font-bold">Find your ideal voyage — quick quiz</h3>
-        <p className="mt-2 text-slate-600 dark:text-slate-300">Answer 4 quick questions and we\'ll recommend a destination tailored to you.</p>
+      <div className="max-w-2xl bg-slate-900/40 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-white/10">
+        <h3 className="text-2xl font-bold text-white">Find your ideal voyage — quick quiz</h3>
+        <p className="mt-2 text-slate-200">Answer 4 quick questions and we\'ll recommend a destination tailored to you.</p>
 
         <div className="mt-6">
-          <div className="text-sm text-slate-500">Question {step + 1} of {QUESTIONS.length}</div>
+          <div className="text-sm text-slate-300">Question {step + 1} of {QUESTIONS.length}</div>
           <div className="mt-3">
-            <div className="text-lg font-semibold">{current.text}</div>
+            <div className="text-lg font-semibold text-white">{current.text}</div>
             <div className="mt-3 grid gap-3">
               {current.options.map((o) => (
-                <button key={o.key} onClick={() => choose(o.key)} className="text-left px-4 py-3 bg-slate-100 dark:bg-slate-800 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                <button key={o.key} onClick={() => choose(o.key)} className="text-left px-4 py-3 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition border border-white/10 text-white">
                   {o.label}
                 </button>
               ))}
